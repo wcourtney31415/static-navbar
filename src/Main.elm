@@ -37,5 +37,41 @@ update msg model =
 
 view model =
     Element.layout
-        []
-        (Element.column [] [ text "test" ])
+        [ width fill
+        , height fill
+        , Background.color <| rgb 1 0 0
+        , inFront navbar
+        ]
+        (Element.column [ width fill, Background.color <| rgb 0 0 1 ]
+            [ navbar
+            , content
+            ]
+        )
+
+
+navbar =
+    Element.column
+        [ width fill
+        , Background.color <| rgb255 100 100 100
+        , Font.color <| rgb 1 1 1
+        , Font.bold
+        ]
+        [ Element.row
+            [ centerX
+            , spacing 40
+            , padding 15
+            ]
+            [ Element.el [] (text "Home")
+            , Element.el [] (text "Weekly Deals")
+            , Element.el [] (text "Shop")
+            , Element.el [] (text "Help")
+            ]
+        ]
+
+
+content =
+    Element.column
+        [ width fill ]
+    <|
+        List.repeat 300 <|
+            text "Example Content..."
